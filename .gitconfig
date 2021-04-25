@@ -3,3 +3,5 @@
 [user]
 	email = fshowalter@gmail.com
 	name = Frank Showalter
+[hub]
+	protocol = https
