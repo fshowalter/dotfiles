@@ -1,0 +1,19 @@
+# Upload a given path to the 'audio' folder in B2.
+function upaudio2b2() {
+  for file in $1/**/*.(flac|ape|accurip|cue|pdf|png|jpg|wv|xcf|log|txt|zip); do b2 upload_file fcs-archive "$file" "audio/${file#./}"; done
+}
+
+# Convert all flac files in the current director to mp3, deleting the intermidiate wav file.
+function flac2mp3() {
+  for file in (*).flac; do \
+    flac -d "$file"; \
+    lame -V0 "${file:r}.wav" "${file:r}.mp3";
+    rm "${file:r}.wav"
+  done
+}
+
+# Open a PR on Github for the current branch and set it to auto-merge.
+function pr() {
+  gh pr create;
+  gh pr merge --auto;
+}
