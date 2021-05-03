@@ -1,0 +1,5 @@
+brew "flac"
+brew "lame"
+brew "b2-tools"
+brew "git"
+brew "gh"
