@@ -1,3 +1,6 @@
+# Add homebrew sbin to path.
+export PATH="/opt/homebrew/bin:$PATH"
+
 emulate zsh -c "$(direnv export zsh)"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -36,9 +39,6 @@ alias ls="ls -laG"
 
 source ~/.functions
 
-# Add homebrew sbin to path.
-export PATH="/usr/local/sbin:$PATH"
-
 # Pyenv init. https://github.com/pyenv/pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -51,3 +51,4 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 fi
+source ~/powerlevel10k/powerlevel10k.zsh-theme
