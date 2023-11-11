@@ -1,6 +1,15 @@
 # Upload a given path to the 'audio' folder in B2.
 function upaudio2b2() {
-  for file in $1/**/*.(flac|ape|accurip|cue|pdf|png|jpg|wv|xcf|log|txt|zip); do b2 upload_file fcs-archive "$file" "audio/${file#./}"; done
+  for file in $1/**/*.(flac|m4a|ape|accurip|cue|pdf|png|jpg|wv|xcf|log|txt|zip); do \
+    b2 upload_file fcs-archive "$file" "audio/${file#./}";
+  done
+}
+
+# Upload a given path to the 'video/downloads' folder in B2.
+function upvideo2b2() {
+  for file in $1/**/*; do \
+    b2 upload_file fcs-archive "$file" "video/downloads/${file#./}";
+  done
 }
 
 # Convert all flac files in the current director to mp3, deleting the intermidiate wav file.
@@ -24,4 +33,14 @@ function wav2flac() {
     flac --best "$file"; \
     rm "${file:r}.wav"
   done
+}
+
+# recusively remove pycache files
+function pyclean () {
+    find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
+}
+
+# Use wget to download the given url saved to the given path.
+function wgfile() {
+  wget -c --retry-connrefused --retry-on-http-error=509 --tries=0 --timeout=5 $2 -O $1
 }

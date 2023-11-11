@@ -1,5 +1,5 @@
 # Add homebrew sbin to path.
-export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/bin:/opt/local/bin:$PATH"
 
 emulate zsh -c "$(direnv export zsh)"
 
@@ -52,3 +52,4 @@ if type brew &>/dev/null; then
   compinit
 fi
 source ~/powerlevel10k/powerlevel10k.zsh-theme
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
