@@ -1,7 +1,9 @@
 [init]
 	defaultBranch = main
 [user]
-	email = fshowalter@gmail.com
+	email = 842058+fshowalter@users.noreply.github.com
 	name = Frank Showalter
 [hub]
 	protocol = https
+[pull]
+	rebase = true
