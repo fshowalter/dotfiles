@@ -39,11 +39,6 @@ alias ls="ls -laG"
 
 source ~/.functions
 
-# Pyenv init. https://github.com/pyenv/pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
 # Add homebrew shell completions.
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
