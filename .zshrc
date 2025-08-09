@@ -5,6 +5,15 @@ export PATH="/opt/homebrew/bin:/opt/local/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+# History configuration for shared history across terminals
+setopt SHARE_HISTORY          # Share history between all sessions
+setopt INC_APPEND_HISTORY     # Write to history file immediately, not when shell exits
+setopt HIST_IGNORE_DUPS       # Don't record duplicate entries
+setopt HIST_FIND_NO_DUPS      # Don't display duplicates when searching
+HISTSIZE=10000                # Number of commands to keep in memory
+SAVEHIST=100000               # Number of commands to save to file
+HISTFILE=~/.zsh_history       # History file location
+
 # History search for up/down arrow.
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
