@@ -1,0 +1,92 @@
+# Starship prompt configuration - migrated from Powerlevel10k
+# Docs: https://starship.rs/config/
+
+# Set the format to match your P10k layout
+format = """
+$directory\
+$git_branch\
+$git_status\
+$line_break\
+$character"""
+
+# Right prompt format
+right_format = """
+$status\
+$cmd_duration\
+$jobs\
+$nodejs\
+$time"""
+
+# Configure prompt character (matches P10k prompt_char)
+[character]
+success_symbol = "[❯](76)"  # Color 76 matches P10k green
+error_symbol = "[❯](196)"   # Color 196 matches P10k red
+vimcmd_symbol = "[❮](bold green)"   # Vim command mode
+vimcmd_replace_one_symbol = "[❮](bold purple)"
+vimcmd_replace_symbol = "[❮](bold purple)"
+vimcmd_visual_symbol = "[V](bold yellow)"
+
+# Directory configuration (matches P10k dir segment)
+[directory]
+style = "31"  # P10k default blue (color 31)
+repo_root_style = "bold 39"  # Bold bright blue for repo roots
+truncation_length = 0  # Don't truncate
+truncate_to_repo = false  # Show full path
+format = "[$path]($style) "
+home_symbol = "~"  # Use ~ for home directory
+
+# Git branch configuration
+[git_branch]
+style = "76"  # Bright green - matches P10k color 76
+format = "on [$symbol$branch]($style)"
+symbol = ""  # No git icon, just branch name
+
+# Git status configuration
+[git_status]
+disabled = true
+
+
+# Status (exit code) - matches P10k status segment
+[status]
+style = "bold red"
+format = "[$symbol$status]($style) "
+symbol = "✘ "
+success_symbol = ""
+disabled = false
+
+# Command duration - matches P10k command_execution_time
+[cmd_duration]
+min_time = 2_000  # Show execution time for commands longer than 2 seconds
+format = "[$duration]($style) "
+style = "101"  # P10k command execution time color
+show_milliseconds = false
+
+# Background jobs - matches P10k background_jobs
+[jobs]
+symbol = "✦"
+style = "bold blue"
+number_threshold = 1
+format = "[$symbol$number]($style) "
+
+# Node.js version (from NVM) - matches P10k nvm segment
+[nodejs]
+format = "[$symbol($version)](76)"
+symbol = " "
+detect_extensions = ["js", "mjs", "cjs", "ts", "mts", "cts"]
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+detect_folders = ["node_modules"]
+
+# Line break for two-line prompt
+[line_break]
+disabled = false
+
+# Battery (optional - not in your P10k config but useful)
+[battery]
+disabled = true
+
+# Time display - matches P10k time format
+[time]
+disabled = false
+format = " at [$time]($style) "
+time_format = "%I:%M:%S %p"  # 12-hour format with seconds and AM/PM
+style = "66"  # P10k time color
