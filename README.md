@@ -10,8 +10,8 @@ dotfiles config --local status.showUntrackedFiles no
 dotfiles remote add origin https://github.com/fshowalter/dotfiles.git
 ```
 
-## Powerlevel10k
-https://github.com/romkatv/powerlevel10k
+## Starship
+https://starship.rs/
 
 ## NVM
 https://github.com/nvm-sh/nvm
