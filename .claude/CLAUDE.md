@@ -44,8 +44,6 @@ Break complex work into 3-5 stages. Document in `IMPLEMENTATION_PLAN.md`:
 
 ### 3. When Stuck (After 3 Attempts)
 
-**CRITICAL**: Maximum 3 attempts per issue, then STOP.
-
 1. **Document what failed**:
 
    - What you tried
@@ -169,6 +167,7 @@ Add specially formatted comments throughout the codebase, where appropriate, for
 - Disable tests instead of fixing them
 - Commit code that doesn't compile
 - Make assumptions - verify with existing code
+- Disable lint rules without checking with the user.
 
 **ALWAYS**:
 
