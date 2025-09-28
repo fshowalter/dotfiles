@@ -47,7 +47,7 @@ function wgfile() {
 
 # let claude create a nice commit message.
 function gcauto() {
-  git commit -m "$(claude -p "Look at the staged git changes and create a summarizing git commit title. Only respond with the title and no affirmation.")"
+  git commit -m "$(npx claude -p "Look at the staged git changes and create a summarizing git commit title. Only respond with the title and no affirmation.")"
 }
 
 # B2 sync command:
