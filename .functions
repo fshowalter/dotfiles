@@ -1,14 +1,14 @@
 # Upload a given path to the 'audio' folder in B2.
 function upaudio2b2() {
   for file in $1/**/*.(flac|m4a|ape|accurip|cue|pdf|png|jpg|wv|xcf|log|txt|zip); do \
-    b2 file upload fcs-archive "$file" "audio/${file#./}";
+    b2v3 file upload fcs-archive "$file" "audio/${file#./}";
   done
 }
 
 # Upload a given path to the 'video/downloads' folder in B2.
 function upvideo2b2() {
   for file in $1/**/*; do \
-    b2 file upload fcs-archive "$file" "video/downloads/${file#./}";
+    b2v3 file upload fcs-archive "$file" "video/downloads/${file#./}";
   done
 }
 
