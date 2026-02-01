@@ -1,6 +1,9 @@
 # Add homebrew sbin to path.
 export PATH="/opt/homebrew/bin:/opt/local/bin:$PATH"
 
+# Add claude bin to path.
+export PATH="$HOME/.local/bin:$PATH"
+
 # NVM init. https://github.com/nvm-sh/nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

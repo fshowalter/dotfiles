@@ -1,6 +1,7 @@
 # Dotfiles instructions
 
 ## Homebrew
+
 https://brew.sh/
 
 ```shell
@@ -11,8 +12,13 @@ dotfiles remote add origin https://github.com/fshowalter/dotfiles.git
 ```
 
 ## Starship
+
 https://starship.rs/
 
 ## NVM
+
 https://github.com/nvm-sh/nvm
 
+## Claude
+
+https://code.claude.com/docs/en/setup
