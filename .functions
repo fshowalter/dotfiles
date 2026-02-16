@@ -24,7 +24,7 @@ function flac2mp3() {
 # Open a PR on Github for the current branch and set it to auto-merge.
 function pr() {
   gh pr create --fill;
-  gh pr merge --merge --auto --delete-branch;
+  gh pr merge --squash --auto --delete-branch;
 }
 
 # Convert all wav files in the current director to flac.
