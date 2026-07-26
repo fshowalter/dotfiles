@@ -50,5 +50,57 @@ function gcauto() {
   git commit -m "$(claude -p "Look at the staged git changes and create a summarizing git commit title. Only respond with the title and no affirmation.")"
 }
 
+# Walk the local branches that no longer exist on the remote and offer to delete
+# each one. Enter (or anything other than 'y') keeps the branch.
+function prunebranches() {
+  git rev-parse --is-inside-work-tree > /dev/null 2>&1 || {
+    echo "prunebranches: not a git repository." >&2
+    return 1
+  }
+
+  if [[ -z "$(git remote)" ]]; then
+    echo "prunebranches: this repo has no remote, nothing to compare against." >&2
+    return 1
+  fi
+
+  echo "Fetching and pruning remote-tracking refs..."
+  git fetch --all --prune --quiet || return 1
+
+  local current="$(git symbolic-ref --quiet --short HEAD)"
+  local line branch state
+  local -a stale
+
+  # Each line is "<branch> <state>", where state is one of:
+  #   gone    -> had an upstream, but it was deleted on the remote
+  #   local   -> never pushed, no upstream set
+  #   tracked -> still present on the remote
+  for line in ${(f)"$(git for-each-ref refs/heads --format='%(refname:short) %(if)%(upstream)%(then)%(if:equals=[gone])%(upstream:track)%(then)gone%(else)tracked%(end)%(else)local%(end)')"}; do
+    branch="${line%% *}"
+    state="${line##* }"
+    [[ "$branch" == "$current" || "$state" == "tracked" ]] && continue
+    stale+=("$branch [$state]")
+  done
+
+  if (( ${#stale} == 0 )); then
+    echo "No local branches missing from the remote."
+    return 0
+  fi
+
+  echo "${#stale} local branch(es) not present on the remote:"
+  printf '  %s\n' $stale
+  echo
+
+  for line in $stale; do
+    branch="${line%% *}"
+    if read -q "?Prune ${line}? [y/N] "; then
+      echo
+      git branch -D "$branch"
+    else
+      echo
+      echo "Keeping ${branch}."
+    fi
+  done
+}
+
 # B2 sync command:
 # b2 sync --excludeRegex '(.*\.DS_Store)' --delete --syncThreads 1 --downloadThreads 1 --replaceNewer --compareThreshold 1000 b2://fcs-archive/audio b2/audio
